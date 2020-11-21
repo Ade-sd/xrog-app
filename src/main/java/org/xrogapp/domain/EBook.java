@@ -10,14 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 @Entity
-@Getter
-@Setter
-@ToString
 public class EBook {
 	
 	@Id
@@ -31,5 +24,43 @@ public class EBook {
 	@Column(nullable = false)
 	@OneToMany(mappedBy = "ebook")
 	private List<Student> student = new ArrayList<Student>();
+	
+	// == constructor's ==
+	
+	public EBook(double storage, List<Student> student) {
+		super();
+		this.storage = storage;
+		this.student = student;
+	}
+	
+	public EBook() {
+		// default constructor
+	}
+	
+	public int getEbookNo() {
+		return ebookNo;
+	}
+
+
+	public double getStorage() {
+		return storage;
+	}
+
+	public void setStorage(double storage) {
+		this.storage = storage;
+	}
+
+	public List<Student> getStudent() {
+		return student;
+	}
+
+	public void setStudent(List<Student> student) {
+		this.student = student;
+	}
+
+	@Override
+	public String toString() {
+		return "EBook [ebookNo=" + ebookNo + ", storage=" + storage + ", student=" + student + "]";
+	}
 
 }

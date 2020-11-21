@@ -7,20 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
-@ToString
 public class Student {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Setter(value = AccessLevel.PRIVATE)
 	private int id;
 	
 	@Column(nullable = false)
@@ -34,5 +26,62 @@ public class Student {
 	
 	@ManyToOne
 	private EBook ebook;
+	
+	// == constructor's ==
+	
+	public Student(String name, String lastName, String email, EBook ebook) {
+		this.name = name;
+		this.lastName = lastName;
+		this.email = email;
+		this.ebook = ebook;
+	}  
+	
+	public Student() {
+		// default constructor
+	}
+
+	// == public methods ==
+
+	public int getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public EBook getEbook() {
+		return ebook;
+	}
+
+	public void setEbook(EBook ebook) {
+		this.ebook = ebook;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", lastName=" +
+				lastName + ", email=" + email + ", ebook=" + ebook + "]";
+	}
 	
 }
