@@ -7,6 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author ade
+ * @date November-19-2020
+ * @Entity EBook domain object
+ */
+
 @Entity
 public class EBook {
 	

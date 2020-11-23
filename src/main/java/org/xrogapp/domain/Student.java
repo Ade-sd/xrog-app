@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * @author ade
+ * @date November-19-2020
+ * @Entity EBook domain object
+ */
 
 @Entity
 public class Student {

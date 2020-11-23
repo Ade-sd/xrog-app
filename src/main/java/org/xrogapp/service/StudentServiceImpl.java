@@ -1,7 +1,9 @@
 package org.xrogapp.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,11 @@ import org.xrogapp.repository.EBookRepository;
 import org.xrogapp.repository.StudentRepository;
 import org.xrogapp.service.interfaces.StudentService;
 
+/**
+ * @author ade
+ * @date November-23-2020
+ * @category Business logic layer for using JPA CRUD service.
+ */
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -30,8 +37,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 	
 	// Add student object and call studentRepository and eBookRepository
-	// to save relation object. 
-
+	// to save relation object.
 	@Override
 	public Student addStudent(Student student) {
 		
@@ -45,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
 		// 2.If id not set in JSON object or it's set but EBook did not exist in DB:
 		// 	 Normally save both student and EBook object's.
 		eBookMaybe.ifPresentOrElse(
-				ebook ->{ 
+				ebook -> { 
 					student.setEbook(ebook); 
 					studentRepository.save(student);
 				},
@@ -61,12 +67,17 @@ public class StudentServiceImpl implements StudentService {
 		return student;
 	}
 
+	// Fetch all students from database with name natural order.
 	@Override
 	public List<Student> getAllStudents() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Student> sortedStudents = studentRepository.findAll()
+				.stream()
+				.sorted(Comparator.comparing(Student::getName))
+				.collect(Collectors.toList());
+		return sortedStudents;
 	}
 
+	// get EBook by id and return an optional<EBook>.
 	@Override
 	public Optional<EBook> getEBookById(int id) {
 		return eBookRepository.findById(id);
