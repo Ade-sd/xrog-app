@@ -1,7 +1,9 @@
 package org.xrogapp.service.interfaces;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.xrogapp.domain.EBook;
 import org.xrogapp.domain.Student;
 /**
  * @author ade
@@ -12,9 +14,11 @@ import org.xrogapp.domain.Student;
 public interface StudentService {
 	
 	// Add new student to database
-	Student addStudent(Student student);
+	Student addStudent(Student Student);
 	
 	// Fetch list of all students from database 
 	List<Student> getAllStudents();
+	
+	Optional<EBook> getEBookById(int id);
 
 }

@@ -18,7 +18,7 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 	
-	@PostMapping(Mappings.ADD_STUDENT)
+	@PostMapping(value = Mappings.ADD_STUDENT)
 	public Student addStudent(@RequestBody Student student) {
 		Student result = studentService.addStudent(student);
 		return result;
