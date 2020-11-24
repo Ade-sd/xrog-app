@@ -3,6 +3,7 @@ package org.xrogapp.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,9 +39,13 @@ public class StudentController {
 	// Call student service addStudent() method 
 	// path = "/add" 
 	@PostMapping(value = Mappings.ADD_STUDENT)
-	public Student addStudent(@RequestBody Student student) {
+	public ResponseEntity<Object> addStudent(@RequestBody Student student) {
 		Student result = studentService.addStudent(student);
-		return result;
+		if(result.getEbook().getBrand()==null || result.getEbook().getStorage()==0.0) {
+			return new ResponseEntity<Object>(String.format("there is no ebook with id %s.",
+					student.getEbook().getEbookNo()),HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Object>(student,HttpStatus.OK);
 	}
 	
 	// Get all students from database
@@ -51,12 +56,13 @@ public class StudentController {
 	
 	//GET student by student id.
 	@GetMapping(value = Mappings.GET_STUDENT)
-	public ResponseEntity<Student> getStudentById(@RequestParam("id") int id) {
+	public ResponseEntity<Object> getStudentById(@RequestParam("id") int id) {
 		try {
 			Student student = studentService.getStudentById(id);
-			return new ResponseEntity<Student>(student,HttpStatus.OK);
+			return new ResponseEntity<Object>(student,HttpStatus.OK);
 		}catch (NoSuchElementException exception) {
-			return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Object>(String.format("there is no ebook with id %s.",id),
+					HttpStatus.NOT_FOUND);
 		}
 	}
 	

@@ -13,6 +13,8 @@ import org.xrogapp.repository.EBookRepository;
 import org.xrogapp.repository.StudentRepository;
 import org.xrogapp.service.interfaces.StudentService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author ade
  * @date November-23-2020
@@ -20,6 +22,7 @@ import org.xrogapp.service.interfaces.StudentService;
  */
 
 @Service
+@Slf4j
 public class StudentServiceImpl implements StudentService {
 	
 	
@@ -40,9 +43,7 @@ public class StudentServiceImpl implements StudentService {
 	// to save relation object.
 	@Override
 	public Student addStudent(Student student) {
-		
-		
-		// Check first if EBook with inserted id exist
+		// Check first if inserted EBook id exist (or maybe not inserted)
 		Optional<EBook> eBookMaybe = getEBookById(student.getEbook().getEbookNo());
 				
 		// 1.If id set in JSON object and EBook with this id already exist in DB:
@@ -57,7 +58,7 @@ public class StudentServiceImpl implements StudentService {
 				},
 				() -> {
 					if(student.getEbook().getBrand()==null || student.getEbook().getStorage()==0.0) {
-						// not persist
+						 log.info("Worng id or null brand and ebook 0.0 storage");// not persist
 					}else {
 						eBookRepository.save(student.getEbook());
 						studentRepository.save(student);
