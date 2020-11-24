@@ -77,10 +77,17 @@ public class StudentServiceImpl implements StudentService {
 		return sortedStudents;
 	}
 
-	// get EBook by id and return an optional<EBook>.
+	// GET EBook by id and return an optional<EBook>.
 	@Override
 	public Optional<EBook> getEBookById(int id) {
 		return eBookRepository.findById(id);
+	}
+
+	// GET EBook by id and return EBook object.
+	@Override
+	public Student getStudentById(int id) {
+		return studentRepository.findById(id)
+				.orElseThrow();
 	}
 
 }

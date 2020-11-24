@@ -1,2 +1,9 @@
-org/xrogapp/XrogramApplication.class
 org/xrogapp/domain/Student.class
+org/xrogapp/service/interfaces/StudentService.class
+org/xrogapp/repository/StudentRepository.class
+org/xrogapp/repository/EBookRepository.class
+org/xrogapp/util/Mappings.class
+org/xrogapp/domain/EBook.class
+org/xrogapp/XrogramApplication.class
+org/xrogapp/controller/StudentController.class
+org/xrogapp/service/StudentServiceImpl.class

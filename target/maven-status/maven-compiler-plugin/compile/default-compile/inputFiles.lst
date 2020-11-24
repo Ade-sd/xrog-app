@@ -1,2 +1,9 @@
 /Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/domain/Student.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/util/Mappings.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/domain/EBook.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/repository/EBookRepository.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/service/StudentServiceImpl.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/controller/StudentController.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/service/interfaces/StudentService.java
+/Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/repository/StudentRepository.java
 /Users/ade/git/repository/xrogram/src/main/java/org/xrogapp/XrogramApplication.java

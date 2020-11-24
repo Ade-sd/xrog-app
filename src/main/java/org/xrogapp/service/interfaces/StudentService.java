@@ -19,7 +19,10 @@ public interface StudentService {
 	// Fetch list of all students from database .
 	List<Student> getAllStudents();
 	
-	// Fetch student by student id.
+	// Fetch EBook by EBook id.
 	Optional<EBook> getEBookById(int id);
+	
+	// Fetch student by student id.
+	Student getStudentById(int id);
 
 }
