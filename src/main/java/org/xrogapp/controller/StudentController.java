@@ -3,11 +3,11 @@ package org.xrogapp.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,6 +62,18 @@ public class StudentController {
 			return new ResponseEntity<Object>(student,HttpStatus.OK);
 		}catch (NoSuchElementException exception) {
 			return new ResponseEntity<Object>(String.format("there is no ebook with id %s.",id),
+					HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	//Get student with student name
+	@GetMapping(value = Mappings.GET_STUDENT+"/{name}")
+	public ResponseEntity<Object> getStudentByName(@PathVariable String name) {
+		try{
+			Student student = studentService.getStudentByName(name).get();
+			return new ResponseEntity<Object>(student,HttpStatus.FOUND);
+		}catch (NoSuchElementException exception) {
+			return new ResponseEntity<Object>(String.format("there is no student found with name %s", name),
 					HttpStatus.NOT_FOUND);
 		}
 	}

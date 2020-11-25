@@ -58,7 +58,8 @@ public class StudentServiceImpl implements StudentService {
 				},
 				() -> {
 					if(student.getEbook().getBrand()==null || student.getEbook().getStorage()==0.0) {
-						 log.info("Worng id or null brand and ebook 0.0 storage");// not persist
+						// not persist
+						 log.info("Worng id or null student EBook(null brand and ebook 0.0 storage)");
 					}else {
 						eBookRepository.save(student.getEbook());
 						studentRepository.save(student);
@@ -78,17 +79,23 @@ public class StudentServiceImpl implements StudentService {
 		return sortedStudents;
 	}
 
-	// GET EBook by id and return an optional<EBook>.
-	@Override
-	public Optional<EBook> getEBookById(int id) {
+	// GET EBook by id and return an optional<EBook> 
+	// (this method is't part of studentService interface).
+	private Optional<EBook> getEBookById(int id) {
 		return eBookRepository.findById(id);
 	}
 
-	// GET EBook by id and return EBook object.
+	// GET Student by id and return Student object.
 	@Override
 	public Student getStudentById(int id) {
 		return studentRepository.findById(id)
 				.orElseThrow();
+	}
+
+	//Get Student by name and return Optional of student.
+	@Override
+	public Optional<Student> getStudentByName(String name) {
+		return studentRepository.findByName(name);	
 	}
 
 }

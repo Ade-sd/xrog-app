@@ -3,7 +3,6 @@ package org.xrogapp.service.interfaces;
 import java.util.List;
 import java.util.Optional;
 
-import org.xrogapp.domain.EBook;
 import org.xrogapp.domain.Student;
 /**
  * @author ade
@@ -19,10 +18,10 @@ public interface StudentService {
 	// Fetch list of all students from database .
 	List<Student> getAllStudents();
 	
-	// Fetch EBook by EBook id.
-	Optional<EBook> getEBookById(int id);
-	
 	// Fetch student by student id.
 	Student getStudentById(int id);
+	
+	// Fetch student by student name.
+	Optional<Student> getStudentByName(String name);
 
 }
